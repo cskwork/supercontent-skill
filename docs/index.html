@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>supercontent - curriculum-aligned content kids enjoy</title>
+<meta name="description" content="Korean K-12 educational-content maker. Read intent, route to the right medium, ship content kids enjoy past a deterministic education-fit gate. 2026 / 2022 개정.">
+<style>
+  :root{
+    --ink:#16140f;      /* off-black */
+    --paper:#f6f3ec;    /* off-white */
+    --panel:#ece7db;
+    --line:#d6cfbe;
+    --muted:#5c554a;
+    --accent:#1f6f5c;   /* deliberate teal-green, not AI-purple */
+    --accent-ink:#f6f3ec;
+    --code-bg:#1c1a15;
+    --code-ink:#e8e2d3;
+    --ok:#3a7d4f;
+    --font: "Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+    --mono: ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--font);line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+  a{color:var(--accent)}
+  h1,h2,h3{line-height:1.18;letter-spacing:-0.01em;font-weight:600}
+  code,kbd{font-family:var(--mono);font-size:0.92em}
+
+  header{border-bottom:1px solid var(--line)}
+  .hero{padding:88px 0 64px}
+  .eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:0.14em;
+    text-transform:uppercase;color:var(--accent)}
+  .hero h1{font-size:clamp(34px,6vw,58px);margin:18px 0 0}
+  .hero p.lead{font-size:clamp(17px,2.4vw,21px);max-width:62ch;color:var(--muted);margin:20px 0 0}
+  .tags{margin-top:28px;display:flex;flex-wrap:wrap;gap:8px}
+  .tag{font-family:var(--mono);font-size:12.5px;border:1px solid var(--line);
+    border-radius:2px;padding:5px 10px;color:var(--muted);background:var(--panel)}
+
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(24px,3.4vw,32px);margin:0 0 8px}
+  section .sub{color:var(--muted);max-width:64ch;margin:0 0 30px}
+
+  .frame{font-family:var(--mono);font-size:12px;letter-spacing:0.12em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+
+  table{width:100%;border-collapse:collapse;font-size:15px}
+  th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-family:var(--mono);font-size:12px;letter-spacing:0.08em;
+    text-transform:uppercase;color:var(--muted);font-weight:600}
+  td:first-child{font-family:var(--mono);font-weight:600;white-space:nowrap;color:var(--accent)}
+  .modes-note{margin-top:14px;color:var(--muted);font-size:14px}
+
+  .loop{list-style:none;counter-reset:s;padding:0;margin:0;
+    display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+  .loop li{counter-increment:s;border:1px solid var(--line);background:var(--panel);
+    border-radius:3px;padding:18px 18px 18px 18px;position:relative}
+  .loop li::before{content:counter(s);font-family:var(--mono);font-weight:700;
+    color:var(--accent);font-size:13px;display:block;margin-bottom:6px}
+  .loop b{display:block;font-size:16px;margin-bottom:4px}
+  .loop span{color:var(--muted);font-size:14px}
+
+  .gate{background:var(--code-bg);color:var(--code-ink);border-radius:6px;
+    padding:22px 22px;font-family:var(--mono);font-size:13px;line-height:1.7;
+    overflow-x:auto;border:1px solid #2c2920}
+  .gate .cmd{color:#9ec9bd}
+  .gate .fail{color:#e8a35a}
+  .gate .ok{color:#84c98e}
+  .gate .dim{color:#8f887a}
+
+  .checks{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:8px}
+  .check{border:1px solid var(--line);border-radius:3px;padding:16px;background:var(--panel)}
+  .check b{font-family:var(--mono);font-size:13px;color:var(--accent);display:block;margin-bottom:5px}
+  .check span{font-size:14px;color:var(--muted)}
+
+  .three{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .three div{border-left:2px solid var(--accent);padding:4px 0 4px 16px}
+  .three h3{margin:0 0 6px;font-size:18px}
+  .three p{margin:0;color:var(--muted);font-size:15px}
+
+  .install pre{background:var(--code-bg);color:var(--code-ink);border-radius:6px;
+    padding:20px;overflow-x:auto;font-family:var(--mono);font-size:13.5px;
+    line-height:1.7;border:1px solid #2c2920}
+  .install .cm{color:#8f887a}
+
+  footer{padding:42px 0 64px;color:var(--muted);font-size:14px}
+  footer a{color:var(--accent)}
+  .kbd{font-family:var(--mono);background:var(--panel);border:1px solid var(--line);
+    border-radius:3px;padding:2px 7px;font-size:0.9em;color:var(--ink)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hero">
+    <div class="eyebrow">supercontent</div>
+    <h1>아이들이 즐기는, 교육과정에 맞는 학습 콘텐츠.</h1>
+    <p class="lead">의도를 읽고, 학년 밴드가 무엇에 반응하는지 짚고, 알맞은 매체로 라우팅해, 결정적 교육-적합성 게이트를 통과한 콘텐츠를 만듭니다. 분위기 점검이 아니라 게이트가 판정합니다.</p>
+    <div class="tags">
+      <span class="tag">초중고 K-12</span>
+      <span class="tag">2022 개정</span>
+      <span class="tag">현재 = 2026</span>
+      <span class="tag">10 modes</span>
+      <span class="tag">deterministic gate</span>
+      <span class="tag">no emoji</span>
+      <span class="tag">WCAG AA</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section id="why">
+  <div class="frame">왜 이게 평범한 프롬프트보다 나은가</div>
+  <h2>교육과정 먼저, 재미는 그 다음.</h2>
+  <p class="sub">재미는 전달 방식이지 목적지가 아닙니다. 성취기준에서 벗어난 콘텐츠는 아무리 재미있어도 결함입니다.</p>
+  <div class="three">
+    <div>
+      <h3>의도 기반 라우팅</h3>
+      <p>요청을 10개 모드 중 하나로 분류하고, 학년 밴드에 맞는 매체와 인지 부하를 고릅니다. 하나의 기본 틀이 아니라 의도가 매체를 정합니다.</p>
+    </div>
+    <div>
+      <h3>트렌드 인지, 트렌드 추종 아님</h3>
+      <p>밴드가 무엇에 반응하는지 짚되, 브리프에 도움이 되는 것만 적용합니다. 트렌드 읽기는 날짜와 함께 기록됩니다.</p>
+    </div>
+    <div>
+      <h3>적합성은 눈대중이 아니라 강제</h3>
+      <p>빌더는 절대 스스로 승인하지 않습니다. edu-critic이 게이트를 돌리고 아무것도 편집하지 않습니다.</p>
+    </div>
+  </div>
+</section>
+
+<section id="modes">
+  <div class="frame">하나의 집 스타일이 아니다</div>
+  <h2>의도가 모드와 매체를 정한다.</h2>
+  <p class="sub">신호를 읽고 알맞은 매체로 보냅니다. 모든 빌드 모드는 자유롭게 만들고 같은 게이트로 검증됩니다.</p>
+  <table>
+    <thead>
+      <tr><th>Mode</th><th>신호</th><th>산출물</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>VIDEO</td><td>짧은 영상 / 쇼츠 / 애니메이션 설명</td><td>영상 + 자막 + 스크립트</td></tr>
+      <tr><td>MANIM</td><td>수식 애니메이션 / 그래프 / 도형 증명</td><td>ManimCE MP4 (KO 폰트)</td></tr>
+      <tr><td>POSTER</td><td>안내문 / 인포그래픽 / 게시판</td><td>인쇄 안전 레이아웃 PDF</td></tr>
+      <tr><td>WEB</td><td>인터랙티브 / 위젯 / 퀴즈 / 시뮬레이션</td><td>자기완결 HTML/CSS/JS</td></tr>
+      <tr><td>SLIDES</td><td>PPT / 차시별 수업 자료 / 발표</td><td>편집 가능 PPTX</td></tr>
+      <tr><td>GAME</td><td>학습 게임 / 카드 매칭 / 드래그</td><td>플레이 가능 HTML 게임</td></tr>
+      <tr><td>AUDIO</td><td>듣기 자료 / 내레이션 / 동화 구연</td><td>오디오 + 스크립트</td></tr>
+      <tr><td>REPURPOSE</td><td>이 영상을 수업자료로 / 자막 활용</td><td>재저작 중간물 -> 빌드 모드</td></tr>
+      <tr><td>REVIEW</td><td>이거 학년에 맞아? / 검토</td><td>게이트 판정 + 심각도 리포트</td></tr>
+      <tr><td>EXPLORE</td><td>방향 잡고 만들어줘</td><td>2-4 방향 + 추천 (빌드 없음)</td></tr>
+    </tbody>
+  </table>
+  <p class="modes-note">DIALS는 <code>claims.md</code>에 선언: <code>FUN_INTENSITY</code> / <code>COGNITIVE_LOAD</code> / <code>SCAFFOLDING</code> (각 low|med|high). 밴드 기본값 - 초저: FUN high / LOAD low / SCAFFOLD high. 고: FUN med / LOAD med-high / SCAFFOLD low-med.</p>
+</section>
+
+<section id="gate">
+  <div class="frame">눈대중이 아니라 결정적 게이트</div>
+  <h2>예측 가능한 실패는 grep 가능하다.</h2>
+  <p class="sub">스크립트가 판정을 계산하므로 조용한 결함이 통과할 수 없습니다. 빌더는 절대 스스로 채점하지 않습니다.</p>
+  <div class="gate" aria-label="education-fit gate 예시 출력">
+<span class="cmd">$ bash templates/edu-gate.sh .supercontent/refraction index.html</span>
+<span class="dim">-- curriculum-gate --</span>
+<span class="fail">claims.json:3 [off-standard] 성취기준 [9과03-04]가 선언 학년 밴드 밖</span>
+<span class="dim">-- safety-gate --band 초고 --</span>
+<span class="fail">index.html:12 [emoji] 이모지 금지, 대괄호 마커 사용 [활동]</span>
+<span class="fail">index.html:28 [no-blank-line] heading 앞 빈 줄 필요 (CommonMark)</span>
+<span class="dim">-- readlevel-gate --band 초고 --</span>
+<span class="fail">script.md:5 [too-long] 19어절, 초고 상한 ~10어절</span>
+<span class="cmd"># 위반 수정 후 재실행</span>
+<span class="cmd">$ bash templates/edu-gate.sh .supercontent/refraction index.html</span>
+<span class="ok">== CURRICULUM GATE PASS ==</span>
+<span class="ok">== SAFETY GATE PASS ==</span>
+<span class="ok">== READLEVEL GATE PASS ==</span>
+<span class="ok">== INTEGRITY GATE PASS ==</span>  <span class="dim">(facts.json 출처 확인)</span>
+<span class="ok">== CONTRAST GATE PASS ==</span>  <span class="dim">(WCAG AA)</span>
+<span class="ok">== EDU-FIT GATE PASS ==</span>
+  </div>
+  <div class="checks">
+    <div class="check"><b>curriculum-gate</b><span>성취기준 vs <code>reference/curriculum-index.json</code>. 선언 밴드 밖 표준을 차단.</span></div>
+    <div class="check"><b>safety-gate --band</b><span>이모지 / PII / 금지 주제 / 안전하지 않은 링크 / CommonMark 빈 줄 간격.</span></div>
+    <div class="check"><b>readlevel-gate --band</b><span>어절 길이 + 어휘 등급. 초저 ~7, 초고 ~10, 중 ~14, 고 ~20.</span></div>
+    <div class="check"><b>integrity-gate</b><span><code>facts.json</code>의 모든 사실에 출처가 있는지. 출처 없는 사실 신호 차단.</span></div>
+    <div class="check"><b>contrast-gate</b><span>열거된 텍스트/배경 쌍의 WCAG AA 명암비. 눈대중 아님.</span></div>
+  </div>
+</section>
+
+<section id="loop">
+  <div class="frame">역할 분리 루프</div>
+  <h2>빌드는 자기 작업을 채점하지 않는다.</h2>
+  <p class="sub">저자 독립성. 단일 작품은 인라인으로 역할을 바꾸며, 자료 배치는 에이전트로 오케스트레이션합니다.</p>
+  <ol class="loop">
+    <li><b>Read</b><span>학년 / 과목 / 성취기준 / 학습목표를 브리프 한 줄로.</span></li>
+    <li><b>Pulse</b><span>밴드가 반응하는 것을 짚고, 날짜와 함께 다이얼 선언.</span></li>
+    <li><b>Direction</b><span>한 포맷 패밀리 + 매체. EXPLORE면 사용자가 고른 뒤 빌드.</span></li>
+    <li><b>Build</b><span>pedagogy-core에 맞춰. 실제/생성 미디어만, 사실은 출처.</span></li>
+    <li><b>Critique</b><span>독립 실행. edu-gate.sh를 돌리고 모든 위반 기록, 편집 없음.</span></li>
+    <li><b>Verify</b><span>위반마다 최소 수정, 초록될 때까지 재실행. 최대 3회.</span></li>
+  </ol>
+</section>
+
+<section id="install" class="install">
+  <div class="frame">설치 + 빠른 시작</div>
+  <h2>~/.claude/skills/supercontent 에 산다.</h2>
+  <p class="sub">자기완결, 우아한 폴백. 도구가 없으면 Claude-Code-only / 로컬 경로로 강등하고 대체를 기록합니다.</p>
+  <pre><span class="cm"># 스킬 위치</span>
+~/.claude/skills/supercontent
+
+<span class="cm"># 그 다음, Claude Code 에서</span>
+/supercontent "초5 과학 빛의 굴절 인터랙티브"
+/supercontent "초3 곱셈 학습 게임 만들어줘"
+/supercontent "이 영상 자막으로 수업자료"   <span class="cm"># REPURPOSE</span>
+/supercontent "이거 초2 학년에 맞아?"        <span class="cm"># REVIEW</span></pre>
+</section>
+
+</main>
+
+<footer class="wrap">
+  <p>품질 우선, 폴백 포함. 학생 데이터가 관여하면 로컬/자체 호스팅(Supertonic TTS, presenton+Ollama)을 선호하고, 외부 전송은 동의 하드스톱입니다.</p>
+  <p>참조 레포 (역량 + 출처): youtube-autopilot, OpenMontage, supertonic-tts, Math-To-Manim, youtube-transcript-api, presenton, ppt-master. 자매 스킬 패턴: <a href="https://cskwork.github.io/superdesign-skill">superdesign</a>.</p>
+  <p>현재 연도 2026. 교육과정 = 2022 개정. 이모지 없음 - 대괄호 마커 <span class="kbd">[목적]</span> <span class="kbd">[활동]</span> <span class="kbd">[정리]</span>.</p>
+</footer>
+
+</body>
+</html>

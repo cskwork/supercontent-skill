@@ -1,0 +1,243 @@
+{
+  "version": "2022 개정",
+  "year": 2026,
+  "status": "starter subset - 교육부 고시 제2022-33호 기준으로 확장하세요. 인덱스에 없는 코드는 추가하되 임의 생성 금지.",
+  "note": "subject/gradeBand are derived from the code shape and validated by curriculum-gate.mjs.",
+  "codes": {
+    "[2국01-01]": {
+      "subject": "국어",
+      "gradeBand": "초저",
+      "domain": "듣기·말하기"
+    },
+    "[2국02-01]": {
+      "subject": "국어",
+      "gradeBand": "초저",
+      "domain": "읽기"
+    },
+    "[2국03-01]": {
+      "subject": "국어",
+      "gradeBand": "초저",
+      "domain": "쓰기"
+    },
+    "[2국05-01]": {
+      "subject": "국어",
+      "gradeBand": "초저",
+      "domain": "문학"
+    },
+    "[4국01-01]": {
+      "subject": "국어",
+      "gradeBand": "초고",
+      "domain": "듣기·말하기"
+    },
+    "[4국02-01]": {
+      "subject": "국어",
+      "gradeBand": "초고",
+      "domain": "읽기"
+    },
+    "[4국05-01]": {
+      "subject": "국어",
+      "gradeBand": "초고",
+      "domain": "문학"
+    },
+    "[6국01-01]": {
+      "subject": "국어",
+      "gradeBand": "초고",
+      "domain": "듣기·말하기"
+    },
+    "[6국02-01]": {
+      "subject": "국어",
+      "gradeBand": "초고",
+      "domain": "읽기"
+    },
+    "[6국03-01]": {
+      "subject": "국어",
+      "gradeBand": "초고",
+      "domain": "쓰기"
+    },
+    "[6국04-01]": {
+      "subject": "국어",
+      "gradeBand": "초고",
+      "domain": "문법"
+    },
+    "[6국05-01]": {
+      "subject": "국어",
+      "gradeBand": "초고",
+      "domain": "문학"
+    },
+    "[9국02-01]": {
+      "subject": "국어",
+      "gradeBand": "중",
+      "domain": "읽기"
+    },
+    "[9국05-01]": {
+      "subject": "국어",
+      "gradeBand": "중",
+      "domain": "문학"
+    },
+    "[2수01-01]": {
+      "subject": "수학",
+      "gradeBand": "초저",
+      "domain": "수와 연산"
+    },
+    "[2수03-01]": {
+      "subject": "수학",
+      "gradeBand": "초저",
+      "domain": "도형과 측정"
+    },
+    "[4수01-01]": {
+      "subject": "수학",
+      "gradeBand": "초고",
+      "domain": "수와 연산"
+    },
+    "[4수02-01]": {
+      "subject": "수학",
+      "gradeBand": "초고",
+      "domain": "변화와 관계"
+    },
+    "[4수03-01]": {
+      "subject": "수학",
+      "gradeBand": "초고",
+      "domain": "도형과 측정"
+    },
+    "[4수04-01]": {
+      "subject": "수학",
+      "gradeBand": "초고",
+      "domain": "자료와 가능성"
+    },
+    "[6수01-01]": {
+      "subject": "수학",
+      "gradeBand": "초고",
+      "domain": "수와 연산"
+    },
+    "[6수02-01]": {
+      "subject": "수학",
+      "gradeBand": "초고",
+      "domain": "변화와 관계"
+    },
+    "[6수03-01]": {
+      "subject": "수학",
+      "gradeBand": "초고",
+      "domain": "도형과 측정"
+    },
+    "[6수04-01]": {
+      "subject": "수학",
+      "gradeBand": "초고",
+      "domain": "자료와 가능성"
+    },
+    "[9수01-01]": {
+      "subject": "수학",
+      "gradeBand": "중",
+      "domain": "수와 연산"
+    },
+    "[9수03-01]": {
+      "subject": "수학",
+      "gradeBand": "중",
+      "domain": "도형과 측정"
+    },
+    "[4과01-01]": {
+      "subject": "과학",
+      "gradeBand": "초고",
+      "domain": "운동과 에너지"
+    },
+    "[4과03-01]": {
+      "subject": "과학",
+      "gradeBand": "초고",
+      "domain": "생명"
+    },
+    "[4과05-01]": {
+      "subject": "과학",
+      "gradeBand": "초고",
+      "domain": "지구와 우주"
+    },
+    "[6과05-01]": {
+      "subject": "과학",
+      "gradeBand": "초고",
+      "domain": "운동과 에너지(빛)"
+    },
+    "[6과03-01]": {
+      "subject": "과학",
+      "gradeBand": "초고",
+      "domain": "생명"
+    },
+    "[6과11-01]": {
+      "subject": "과학",
+      "gradeBand": "초고",
+      "domain": "지구와 우주"
+    },
+    "[9과01-01]": {
+      "subject": "과학",
+      "gradeBand": "중",
+      "domain": "운동과 에너지"
+    },
+    "[9과06-01]": {
+      "subject": "과학",
+      "gradeBand": "중",
+      "domain": "생명"
+    },
+    "[4사01-01]": {
+      "subject": "사회",
+      "gradeBand": "초고",
+      "domain": "지리 인식"
+    },
+    "[4사04-01]": {
+      "subject": "사회",
+      "gradeBand": "초고",
+      "domain": "일반사회"
+    },
+    "[6사01-01]": {
+      "subject": "사회",
+      "gradeBand": "초고",
+      "domain": "역사"
+    },
+    "[6사03-01]": {
+      "subject": "사회",
+      "gradeBand": "초고",
+      "domain": "일반사회"
+    },
+    "[9사01-01]": {
+      "subject": "사회",
+      "gradeBand": "중",
+      "domain": "지리"
+    },
+    "[4영01-01]": {
+      "subject": "영어",
+      "gradeBand": "초고",
+      "domain": "이해"
+    },
+    "[4영02-01]": {
+      "subject": "영어",
+      "gradeBand": "초고",
+      "domain": "표현"
+    },
+    "[6영01-01]": {
+      "subject": "영어",
+      "gradeBand": "초고",
+      "domain": "이해"
+    },
+    "[6영02-01]": {
+      "subject": "영어",
+      "gradeBand": "초고",
+      "domain": "표현"
+    },
+    "[9영01-01]": {
+      "subject": "영어",
+      "gradeBand": "중",
+      "domain": "이해"
+    },
+    "[9영02-01]": {
+      "subject": "영어",
+      "gradeBand": "중",
+      "domain": "표현"
+    },
+    "[10공국1-01-01]": {
+      "subject": "국어",
+      "gradeBand": "고",
+      "domain": "공통국어1"
+    },
+    "[10공수1-01-01]": {
+      "subject": "수학",
+      "gradeBand": "고",
+      "domain": "공통수학1"
+    }
+  }
+}

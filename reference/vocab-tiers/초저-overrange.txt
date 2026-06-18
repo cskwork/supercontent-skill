@@ -1,0 +1,13 @@
+# 초저(초1-2) over-range vocabulary - words too abstract/academic for this band.
+# readlevel-gate.mjs flags lines containing these. Lines starting with # are ignored.
+# A term the lesson explicitly teaches + defines in place: add "edu-ok" to that line.
+가설
+변인
+상관관계
+메커니즘
+패러다임
+추상적
+본질적
+상호작용
+정량적
+함수

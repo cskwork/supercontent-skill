@@ -33,3 +33,30 @@
 ## 검증
 
 테스트 4종 green: gate-data-contract 9, gate-scenarios 15, mode-routing 3, reference-links 2. doc-env.py/doc-gate.sh 실측 통과.
+
+---
+
+# 2026-06-19 - 스킬 점검: 크로스플랫폼 file:// URL 버그 수정
+
+## 무엇을
+
+스킬 빌드 베스트프랙티스 + Windows/macOS 호환성 점검. 실제 결함 1건만 surgical 수정: `templates/doc-env.py`의 Chrome PDF 변환 URL 생성을 `"file://" + os.path.abspath(...)` → `Path(html_path).resolve().as_uri()`로 교체 (+`from pathlib import Path`).
+
+## 왜 / 결정과 근거
+
+- **진짜 크로스플랫폼 버그.** POSIX에선 `os.path.abspath`가 `/`로 시작해 `file:///...`로 우연히 맞지만, Windows에선 `C:\...`라서 `file://C:\...`(역슬래시 + host=C:)가 되어 Chrome headless가 로드 실패 → PDF 미생성. README가 "across Windows and macOS"를 명시 약속하므로 정합성 결함.
+- **`Path.as_uri()`가 정답.** 전 플랫폼에서 RFC 8089 file URI 생성: POSIX `file:///...`(기존과 동일), Windows `file:///C:/.../`. 덤으로 공백 경로를 `%20` 인코딩 → 공백 포함 파일명(학습지·보고서)이 전 플랫폼에서 깨지던 잠재 버그도 해소. `PureWindowsPath(...).as_uri()` 시뮬레이션으로 `file:///C:/Users/x/lesson%20deck.html` 확인.
+- **최소 변경.** 2줄. 잘 만들어진 스킬에 억지 변경 금지(commandment #5/#6).
+
+## 거부한 대안 (Explore 에이전트 지적을 ground truth로 검증 후 기각)
+
+- **게이트 .mjs의 CRLF 처리**: 전부 `text.split(/\r?\n/)` + 문장분리는 `.trim()`/`\s+`가 `\r` 흡수 → 이미 CRLF-safe. 코드 확인 후 기각.
+- **doc-env.py env var 미검출**: `SOFFICE`/`CHROME` env override 이미 존재(26·44행). 기각.
+- **셸 배열 quoting**: 이미 `"${SRC[@]}"`. 기각.
+- **Windows 네이티브 bash 부재로 게이트 불가**: 스킬은 Claude Code가 실행하고 Claude Code Bash 도구는 전 OS에서 bash(Git Bash/WSL) 제공 → 실사용에서 게이트 정상 동작. 기각.
+- **curriculum CODE_RE 2022개정 하드코딩**: 의도된 설계(데이터계약 테스트가 version=="2022 개정" assert). 기각.
+- **`doc-env.py:117` Pyright `shapable: bool` 경고**: `TTFont(..., subfontIndex=0)`는 정상 ReportLab API. `**kw`(dict[str,int]) 언패킹을 stub이 잘못 매칭한 false-positive, 런타임 무결 + 작업 무관. 동작하는 fallback 코드를 linter 위해 바꾸지 않음.
+
+## 검증
+
+`Path(...).resolve().as_uri()` 실제 코드는 deprecated 아님(테스트 출력의 경고는 시뮬레이션용 `PureWindowsPath.as_uri()`에서 발생). 모듈 import OK, POSIX `%20` 인코딩 + Windows 시뮬 assert PASS, CLI `doc-env.py font` 정상, 기존 테스트 4종 무회귀 green(9/15/3/2).

@@ -14,6 +14,7 @@ import os
 import sys
 import shutil
 import subprocess
+from pathlib import Path
 
 WIN = sys.platform.startswith("win")
 MAC = sys.platform == "darwin"
@@ -139,7 +140,7 @@ def chrome_to_pdf(html_path: str, pdf_path: str) -> str:
     chrome = find_chrome()
     if not chrome:
         raise RuntimeError("Chrome/Chromium 없음 - WeasyPrint 또는 수동 인쇄 안내")
-    url = "file://" + os.path.abspath(html_path)
+    url = Path(html_path).resolve().as_uri()  # file:/// URI - 윈도우 역슬래시/공백 경로까지 정확
     r = subprocess.run([chrome, "--headless", "--disable-gpu", "--no-pdf-header-footer",
                         f"--print-to-pdf={pdf_path}", url], capture_output=True, text=True)
     if not os.path.exists(pdf_path):

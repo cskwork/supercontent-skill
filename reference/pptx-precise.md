@@ -26,7 +26,7 @@ prs.save("deck.pptx")
 
 ## 비즈니스 보고 덱 디자인 (경영/대표 보고용)
 
-업무 보고 PPT는 기본 텍스트박스 나열로는 부족하다 - 경영진은 한눈에 읽히는 비주얼 위계를 기대한다. 아래를 적용하고 색은 반드시 `contrast-gate.mjs`로 검증한다(눈대중 금지).
+업무 보고 PPT는 기본 텍스트박스 나열로는 부족하다 - 경영진은 한눈에 읽히는 비주얼 위계를 기대한다. 메시지 작법(action title, storyline-first, executive summary SCQA, RAG, 차트 takeaway)은 `reference/biz-report.md`를 먼저 적용한다 - 디자인보다 메시지 구조가 우선. 아래는 그 위에 얹는 비주얼이며 색은 반드시 `contrast-gate.mjs`로 검증한다(눈대중 금지).
 
 색 팔레트 - 1 primary + 1 accent + 중립:
 - primary(표지/헤더 배경): 진한 코퍼레이트색. 그 위 텍스트는 흰색이어야 AA 통과(예 네이비 `#1F3A5F`).

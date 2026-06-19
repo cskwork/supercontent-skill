@@ -64,7 +64,7 @@ with zipfile.ZipFile("in.hwpx") as z:
    ```python
    open("doc.html","w").write(HwpxDocument.open("in.hwpx").export_html())
    ```
-   이후 `templates/doc-env.sh chrome_to_pdf doc.html out.pdf`. 서식 충실도는 한컴 원본보다 단순화될 수 있음(로그에 명시).
+   이후 `templates/doc-env.sh chrome_to_pdf doc.html out.pdf`. 서식 충실도는 한컴 원본보다 단순화될 수 있음 - 특히 `ensure_run_style` 색/굵기는 hwpx(header.xml charPr)에 정확히 적용되나(한컴에서 보임) `export_html`은 그 색을 inline으로 내보내지 않아 이 경로의 PDF는 흑백이 된다(실측). 컬러 PDF가 필요하면 LibreOffice+H2Orestart 직접 변환 또는 한컴 인쇄를 쓴다.
 
 2. **LibreOffice + H2Orestart 확장 (직접 변환, 원본 서식 보존 강함).** 실측: 확장 **미설치 시 `soffice --convert-to`가 hwpx를 "source file could not be loaded"로 거부**. 따라서 H2Orestart(GPLv3, Java 필요)를 LibreOffice에 설치해야 동작:
    ```bash

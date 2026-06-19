@@ -12,9 +12,9 @@ Intent -> grade-band-aware medium that fits -> content kids enjoy -> verified ag
 - Curriculum first, fun second - but fun is not optional. Every piece locks to a 성취기준 and an objective; engagement is how it lands, never the goal itself.
 - Read intent first. Build to the brief (학년/과목/단원/성취기준/audience), never to a default template.
 - Trend-aware != trend-chasing. Apply only what engages the grade band AND stays on-curriculum and safe. Record the trend read, dated.
-- Education-fit enforced, not eyeballed. Every piece passes `edu-gate.sh` (curriculum + safety + read-level + integrity + contrast). The Builder never self-approves.
+- Education-fit enforced, not eyeballed. Every piece passes `edu-gate.sh` (curriculum + safety + read-level + korean + integrity + contrast). The Builder never self-approves.
 - Never fabricate. No invented citation, statistic, figure, date, or historical fact - source it or cut it. Missing render/TTS/image tool -> documented placeholder, never faked media.
-- Safe for minors. Forbidden topics/vocab per band, no PII, no emoji, Korean CommonMark blank-line spacing. 안전/저작권/개인정보 override fun, always.
+- Safe for minors. Forbidden topics/vocab per band, no PII, no emoji, Korean CommonMark blank-line spacing + 어절 띄어쓰기·맞춤법 correct. 안전/저작권/개인정보 override fun, always.
 - Self-contained + graceful fallback. Quality tools (Codex image, premium TTS, Flow video) are the default per project choice; every stage degrades to a Claude-Code-only path and logs the substitution.
 - Hard stops. Publishing content for minors (LMS/channel/post), sending student data to an external service, or any destructive step needs explicit consent. Ambiguous brief -> one question; non-interactive -> conservative read, assumption logged.
 
@@ -46,7 +46,7 @@ Author-independent roles. Single piece -> inline, switch role with a fresh re-re
 1. **Read (brief).** Infer 학년 band (초저/초고/중/고), 과목, 단원/차시, 성취기준 code, learning objective, reading level, format constraints, quiet constraints (안전/저작권/개인정보 override fun). State the one-line Read. 성취기준 is mandatory - if the user has none, propose the closest standard and flag it for teacher confirmation. Two reads diverge -> ask ONE question; non-interactive -> conservative read + logged assumption. Record in the vault. (`reference/content-brief.md`, `reference/curriculum-map.md`)
 2. **Trend pulse.** `WebSearch` what engages this grade band now (formats, safe current references). Failure -> `reference/trend-snapshot.md` (dated, warned stale). Reuse a same-band pulse <=30 days. Record dated in the vault. (`reference/trend-research.md`)
 3. **Direction.** Set dials `FUN_INTENSITY` / `COGNITIVE_LOAD` / `SCAFFOLDING`. Pick ONE format family + medium; load that medium's reference. (`reference/curriculum-map.md` for sequencing)
-4. **Build (Builder).** Implement to `reference/pedagogy-core.md` (always authority) + the chosen medium. Real assets + render via `reference/assets.md` and `reference/tools.md`; never fabricate a fact or media. Wire reduced-motion, computed contrast, Korean CommonMark spacing, no emoji. No self-approval; append `claims.md` + the vault JSONs per piece. (`agents/builder.md`)
+4. **Build (Builder).** Implement to `reference/pedagogy-core.md` (always authority) + the chosen medium. Real assets + render via `reference/assets.md` and `reference/tools.md`; never fabricate a fact or media. Wire reduced-motion, computed contrast, Korean CommonMark spacing + 어절 띄어쓰기·맞춤법, no emoji. No self-approval; append `claims.md` + the vault JSONs per piece. (`agents/builder.md`)
 5. **Education-fit critique (independent; no content edits).** Re-read `pedagogy-core.md` + `safety-rules.md`. Enumerate every claim/term/sentence/text-bg pair into the vault JSONs. Run `templates/edu-gate.sh`. Then judge what scripts cannot see: factual soundness, age-appropriate framing, pedagogical fit, Korean naturalness. Log every violation. (`agents/edu-critic.md`)
 6. **Verify.** Fix each violation, smallest change; re-run until green. Report passes with command output. Cap: 3 critique->fix cycles; same rule still failing -> stop, report remaining honestly (e.g. "어휘 난이도 4건 미해결 - 교사 검토 필요").
 
@@ -93,7 +93,7 @@ No-build modes (REVIEW/EXPLORE): load the mode's reference, deliver its row, ski
 - [ ] Mode + one-line Read stated; 학년/과목/성취기준/objective in the brief (or closest standard flagged for teacher)
 - [ ] Trends pulsed + dated (or snapshot fallback disclosed); dials declared
 - [ ] One format family + medium; built to `pedagogy-core.md`; real/generated media (no faked media), facts sourced
-- [ ] No emoji, no PII, Korean CommonMark blank-line spacing; reduced-motion + WCAG AA honored
+- [ ] No emoji, no PII, Korean CommonMark blank-line spacing + 어절 띄어쓰기·맞춤법 (korean-gate green); reduced-motion + WCAG AA honored
 - [ ] Mode contract met: build modes -> `templates/edu-gate.sh` green (output reported) + no HIGH critic finding; other modes -> their verified-by row
 - [ ] Smallest change for intent; no unrequested rewrites
 - [ ] Any publish for minors / external student-data send / destructive step had explicit consent

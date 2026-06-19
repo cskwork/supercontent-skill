@@ -23,6 +23,7 @@ Band defaults: 초저 = FUN high / LOAD low / SCAFFOLD high. 초고 = FUN high /
 ## Korean writing style (enforced)
 
 - Strict CommonMark spacing. A single newline is ignored by renderers; put a blank line between every paragraph, and a blank line before every heading and list. (safety-gate flags heading/list with no blank line before.)
+- Correct 어절 띄어쓰기 and 맞춤법 are mandatory in every Korean deliverable. korean-gate blocks high-confidence errors (의존명사 띄어쓰기 같은 '할수있다'->'할 수 있다', 흔한 맞춤법 '되요'->'돼요'); the edu-critic judges the rest (naturalness, context-dependent 맞춤법). Write it right; do not rely on the gate to catch everything.
 - No emoji anywhere - cards, docs, slides, captions. Use bracket section markers instead: `[목적]`, `[활동]`, `[정리]`.
 - Sentence length by band (readlevel-gate enforces the floor): 초저 ~7 어절, 초고 ~10, 중 ~14, 고 ~20. Shorter is almost always better for younger learners.
 - Plain, warm, direct. 존댓말 to the learner ("~해 봐요", "~할 수 있어요"). Define a term the first time it appears. Avoid English loanwords when a common Korean word exists.

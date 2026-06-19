@@ -108,6 +108,7 @@
       <span class="tag">현재 = 2026</span>
       <span class="tag">10 modes</span>
       <span class="tag">deterministic gate</span>
+      <span class="tag">한국어 교정</span>
       <span class="tag">no emoji</span>
       <span class="tag">WCAG AA</span>
     </div>
@@ -173,11 +174,15 @@
 <span class="fail">index.html:28 [no-blank-line] heading 앞 빈 줄 필요 (CommonMark)</span>
 <span class="dim">-- readlevel-gate --band 초고 --</span>
 <span class="fail">script.md:5 [too-long] 19어절, 초고 상한 ~10어절</span>
+<span class="dim">-- korean-gate --</span>
+<span class="fail">script.md:7 [korean-spacing] 의존명사 '수' 띄어쓰기: "할수있다" -> "할 수 있다"</span>
+<span class="fail">script.md:9 [korean-spelling] 맞춤법: "되요" -> "돼요"</span>
 <span class="cmd"># 위반 수정 후 재실행</span>
 <span class="cmd">$ bash templates/edu-gate.sh .supercontent/refraction index.html</span>
 <span class="ok">== CURRICULUM GATE PASS ==</span>
 <span class="ok">== SAFETY GATE PASS ==</span>
 <span class="ok">== READLEVEL GATE PASS ==</span>
+<span class="ok">== KOREAN GATE PASS ==</span>  <span class="dim">(띄어쓰기 + 맞춤법)</span>
 <span class="ok">== INTEGRITY GATE PASS ==</span>  <span class="dim">(facts.json 출처 확인)</span>
 <span class="ok">== CONTRAST GATE PASS ==</span>  <span class="dim">(WCAG AA)</span>
 <span class="ok">== EDU-FIT GATE PASS ==</span>
@@ -186,6 +191,7 @@
     <div class="check"><b>curriculum-gate</b><span>성취기준 vs <code>reference/curriculum-index.json</code>. 선언 밴드 밖 표준을 차단.</span></div>
     <div class="check"><b>safety-gate --band</b><span>이모지 / PII / 금지 주제 / 안전하지 않은 링크 / CommonMark 빈 줄 간격.</span></div>
     <div class="check"><b>readlevel-gate --band</b><span>어절 길이 + 어휘 등급. 초저 ~7, 초고 ~10, 중 ~14, 고 ~20.</span></div>
+    <div class="check"><b>korean-gate</b><span>어절 띄어쓰기 + 흔한 맞춤법 오류(<code>korean-rules.json</code>). 거의 확실한 오류만 차단, 나머지 자연스러움은 critic 판단.</span></div>
     <div class="check"><b>integrity-gate</b><span><code>facts.json</code>의 모든 사실에 출처가 있는지. 출처 없는 사실 신호 차단.</span></div>
     <div class="check"><b>contrast-gate</b><span>열거된 텍스트/배경 쌍의 WCAG AA 명암비. 눈대중 아님.</span></div>
   </div>

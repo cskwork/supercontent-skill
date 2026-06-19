@@ -76,6 +76,12 @@ if [ "${#TXT[@]}" -gt 0 ]; then
   node "$HERE/readlevel-gate.mjs" --band "$BAND" "${TXT[@]}" || fail "read-level too hard for band"
 fi
 
+# 7b. Korean spacing/spelling gate (text only; high-confidence patterns from korean-rules.json).
+if [ "${#TXT[@]}" -gt 0 ]; then
+  echo "-- korean-gate --"
+  node "$HERE/korean-gate.mjs" --band "$BAND" "${TXT[@]}" || fail "Korean spacing/spelling violations"
+fi
+
 # 8. Integrity gate.
 echo "-- integrity-gate --"
 node "$HERE/integrity-gate.mjs" "$FACTS" "${SRC[@]}" || fail "integrity violations"

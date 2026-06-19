@@ -9,6 +9,7 @@ The human-readable rules the deterministic `safety-gate.mjs` enforces, plus the 
 - **Forbidden topics per band** - from `forbidden-topics.json`. Universal (all ages): 자살/자해 방법, 마약 사용, 음란물, 도박, 무기·폭발물 제조, PII 요구. Stricter for 초저/초고: 살해·시체 묘사, 음주·흡연, 잔혹 묘사.
 - **Insecure links** - `http://` (use https or remove). External links for minors should point to vetted, age-appropriate destinations only.
 - **CommonMark breaks** - heading/list with no blank line before (renders wrong, reads broken).
+- **Korean spacing/spelling** - high-confidence 띄어쓰기/맞춤법 errors (korean-gate, from `korean-rules.json`): 의존명사 띄어쓰기 ('할수있다'), 흔한 맞춤법 ('되요'->'돼요', '몇일'->'며칠'). On a false positive, add `edu-ok` or remove the rule - never broaden by editing the script.
 
 ## What the Critic must judge (the script cannot)
 

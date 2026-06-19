@@ -24,6 +24,32 @@ prs.save("deck.pptx")
 
 한글 폰트: docx와 같은 원리지만 python-pptx는 `font.name`만으로 동작하는 경우가 많다. 깨질 때는 단락의 `rPr`에 eastAsia를 다는 패턴을 `templates/doc-env.py`에서 가져온다. 폰트는 이름만 임베드되므로 협업 시 범용 폰트 권장.
 
+## 비즈니스 보고 덱 디자인 (경영/대표 보고용)
+
+업무 보고 PPT는 기본 텍스트박스 나열로는 부족하다 - 경영진은 한눈에 읽히는 비주얼 위계를 기대한다. 아래를 적용하고 색은 반드시 `contrast-gate.mjs`로 검증한다(눈대중 금지).
+
+색 팔레트 - 1 primary + 1 accent + 중립:
+- primary(표지/헤더 배경): 진한 코퍼레이트색. 그 위 텍스트는 흰색이어야 AA 통과(예 네이비 `#1F3A5F`).
+- accent(강조 바/포인트 장식): primary와 대비되는 계열(예 틸 `#2A9D8F`). accent 위에 흰 텍스트는 보통 AA 미달이므로 accent는 장식 바에만 쓰고, 강조 텍스트/KPI 숫자는 primary색을 흰 배경에 둔다.
+- 중립: 본문 ink(거의 검정 `#202428`), 배경 흰/연회색(`#F1F4F7`), muted 회색.
+- 상태 배지색: 완료/진행/예정을 일관 색으로. 배지 위 흰 텍스트는 배지색을 충분히 진하게(예 완료 `#15695B`, 진행 `#9A5B12`, 예정 `#565E6B`).
+
+슬라이드 패턴:
+- 표지: primary 풀블리드 배경 + 큰 제목(흰) + accent 구분 바 + 메타(보고일/부서/보고자).
+- 본문: 상단 primary 띠(제목 흰) + 좌측 accent 세로 바 + 흰 바탕 ink 본문. 슬라이드당 한 메시지, 6줄 이내.
+- 요약/강조: 연회색 박스 + accent 좌측 바. KPI 숫자는 크게 + primary색.
+- 표: 헤더 primary 배경 + 흰 텍스트, 본문 행 줄무늬(연회색), 상태 셀은 배지색.
+
+타이포: 제목 28-36pt bold, 소제목 18-22pt, 본문 14-18pt, 캡션 10-12pt. 한글 폰트 일관(`doc-env.py korean_font_name`), 어절 줄바꿈(`word_wrap`).
+
+python-pptx 구현:
+- 색 띠/바: `shapes.add_shape(MSO_SHAPE.RECTANGLE, ...)` 후 `shp.fill.solid(); shp.fill.fore_color.rgb = RGBColor(...)`, `shp.line.fill.background()`, `shp.shadow.inherit = False`.
+- 배지: `MSO_SHAPE.ROUNDED_RECTANGLE` + 상태색 fill + 흰 텍스트.
+- 표 셀 색: `cell.fill.solid(); cell.fill.fore_color.rgb = ...`. 텍스트색: `run.font.color.rgb = RGBColor(...)`.
+- 와이드(16:9): `prs.slide_width = Inches(13.333); prs.slide_height = Inches(7.5)`.
+
+contrast(필수): 모든 텍스트-배경 쌍(표지 제목/primary, 본문/흰, 표 헤더/primary, 배지 텍스트/배지색, KPI/흰)을 `contrast-pairs.json`에 enumerate하고 `node contrast-gate.mjs contrast-pairs.json`으로 WCAG AA 검증. 흰 텍스트는 충분히 진한 배경에만 둔다. 이 덱은 업무 문서이므로 게이트는 `doc-gate.sh`(검증된 본문 텍스트 + contrast-pairs.json).
+
 ## 읽기
 
 ```python

@@ -46,7 +46,7 @@ backward-looking 기록이 아니라 forward-looking 의사결정 도구. 순서
 
 ## RAG status (신호등, 주관 제거)
 
-정량 임계값으로: 편차 <5% Green / 5-15% Amber / >15% Red(또는 조직 기준). Amber는 머무르지 않게(통제로 복귀 또는 방치로 Red 전락). 색만 쓰지 말고 narrative 병기(상태+이슈+영향+조치). 색맹 대비 라벨 redundancy. supercontent 팔레트: Green `#15695B` / Amber `#9A5B12` / Red(긴급) - 전부 contrast-gate AA.
+정량 임계값으로: 편차 <5% Green / 5-15% Amber / >15% Red(또는 조직 기준). Amber는 머무르지 않게(통제로 복귀 또는 방치로 Red 전락). 색만 쓰지 말고 narrative 병기(상태+이슈+영향+조치). 색맹 대비 라벨 redundancy. supercontent 팔레트: Green `#2E6F5E` / Amber `#E3A82B`(밝은 골드 + 다크 텍스트 - 어둡게 누르면 갈색=AI slop) / Red `#B0413E` - 전부 contrast-gate AA.
 
 ## 차트 (메시지 운반체)
 

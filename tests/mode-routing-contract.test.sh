@@ -10,8 +10,8 @@ SKILL_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 SKILL_MD="$SKILL_DIR/SKILL.md"
 PASS=0; FAIL=0
 
-# Canonical MODE set (from skill constants): 10 modes.
-MODES="VIDEO MANIM POSTER WEB SLIDES GAME AUDIO REPURPOSE REVIEW EXPLORE"
+# Canonical MODE set (from skill constants): 11 modes.
+MODES="VIDEO MANIM POSTER WEB SLIDES GAME AUDIO DOCS REPURPOSE REVIEW EXPLORE"
 
 run_case() {
   local label="$1" exp="$2" substr="$3" out rc ok=1
@@ -60,7 +60,7 @@ check_mode_set() {
     grep -qE "\| *$m *\|" "$md" && declared="$declared $m"
   done
   got="$(printf '%s\n' $declared | sort -u)"
-  if [ "$got" = "$want" ]; then echo "mode set matches canonical (10 modes)"; return 0; fi
+  if [ "$got" = "$want" ]; then echo "mode set matches canonical (11 modes)"; return 0; fi
   echo "mode set mismatch"; diff <(echo "$want") <(echo "$got"); return 1
 }
 export -f check_mode_set

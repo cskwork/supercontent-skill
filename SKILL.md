@@ -31,11 +31,12 @@ State e.g. `Making this as: VIDEO for 초5 과학, 빛의 굴절 [6과05-01], 90
 | slide deck / PPT / 수업 자료 / 차시별 슬라이드 / 발표 | SLIDES | confirm spec (학년/차시/장수) -> aligned slides -> editable PPTX | presenton REST -> PPT Master -> reveal.js (`reference/slides.md`) |
 | game / 게임으로 / 3D / 인터랙티브 게임 / 카드 매칭 / 드래그 학습 | GAME | direction -> single-file playable, objective-locked | Claude Code direct (Three.js/Phaser/canvas) (`reference/game.md`) |
 | narrated audio / 오디오 / 듣기 자료 / 팟캐스트 / 동화 구연 | AUDIO | script -> sentence-level TTS -> optional ducked BGM | premium TTS -> Supertonic local (`reference/audio.md`) |
+| document / 보고서 / 제안서 / 학습지 / 평가지 / 가정통신문 / docx / pdf 문서 / 한글 hwpx / .pptx 정밀 / 문서 읽어줘 / pdf 표 추출 / 문서 변환 | DOCS | 형식 판별 -> 생성·읽기·변환 분기 -> 대상(교육/업무)별 게이트 | python-docx·python-pptx·WeasyPrint·python-hwpx (생성), pdfplumber·pypdf·python-hwpx (읽기), LibreOffice+H2Orestart (변환) (`reference/docs.md`) |
 | repurpose existing video / 기존 영상 자막으로 / 영상 요약 / 받아쓰기 | REPURPOSE | ingest transcript -> chunk to beats -> re-author for grade | youtube-transcript-api (`reference/repurpose.md`) -> routes to a build mode |
 | critique only / 검수 / 이거 학년에 맞아? / 평가만 | REVIEW | run gates on existing content, edit nothing | `edu-gate.sh` + critic (`reference/review.md`) |
 | explore / 어떤 형식이 좋을까 / 방향 잡아줘 | EXPLORE | 2-4 divergent format directions, no commit | trend-scout + format catalog (`reference/explore.md`) |
 
-Tie-breaks (one mode wins): "검수하고 고쳐줘" -> the build mode for that medium (REVIEW never edits). "방향 잡고 만들어줘" -> EXPLORE; build only after the user picks. "영상인데 수식 애니 필요" -> VIDEO owns it, MANIM is a sub-asset; MANIM-only when the animation IS the whole deliverable. REPURPOSE always produces an intermediate, then routes to a build mode.
+Tie-breaks (one mode wins): "검수하고 고쳐줘" -> the build mode for that medium (REVIEW never edits). "방향 잡고 만들어줘" -> EXPLORE; build only after the user picks. "영상인데 수식 애니 필요" -> VIDEO owns it, MANIM is a sub-asset; MANIM-only when the animation IS the whole deliverable. REPURPOSE always produces an intermediate, then routes to a build mode. 발표/차시 deck (screen-projected, presenton AI 초안) -> SLIDES; 정밀 셀·표·서식 제어가 필요한 단일 .pptx 파일 산출, 또는 docx/pdf/hwpx 본문 문서 -> DOCS. 기존 문서(pdf/docx/pptx/hwpx) 읽기·표 추출·형식 변환 -> DOCS (REPURPOSE는 영상 자막 전용).
 
 ## Default loop (build modes) - role-separated
 
@@ -60,6 +61,7 @@ No-build modes (REVIEW/EXPLORE): load the mode's reference, deliver its row, ski
 |---|---|---|
 | VIDEO / MANIM / AUDIO | media file + vault + captions/script | `edu-gate.sh` green (contrast skipped for audio); render or documented placeholder |
 | POSTER / WEB / SLIDES / GAME | content file(s) + vault | `edu-gate.sh` green incl. `contrast-gate.mjs` on every pair |
+| DOCS | document file(s) (docx/pptx/pdf/hwpx) + vault (+변환 산출물) | 교육 대상 문서 -> `edu-gate.sh` green; 업무 문서 -> `doc-gate.sh` green (korean+integrity, +contrast when pairs declared); 라이브러리/변환 부재 시 문서화된 placeholder |
 | REPURPOSE | re-authored intermediate (beats + grade-leveled text) + source attribution | transcript sourced; routes to a build mode which runs the gate |
 | REVIEW | findings report (gate verdicts + severity, file:line, fix) | gates ran on the input; zero edits |
 | EXPLORE | 2-4 divergent format directions + one recommendation | directions genuinely differ; nothing built |
@@ -81,6 +83,7 @@ No-build modes (REVIEW/EXPLORE): load the mode's reference, deliver its row, ski
 | `reference/game.md` | GAME build (Three.js/Phaser/canvas) |
 | `reference/audio.md` | AUDIO build (TTS, KO speed, ducked BGM) |
 | `reference/poster.md` | POSTER build (print-safe, PDF) |
+| `reference/docs.md` | DOCS hub: 형식 판별(docx/pptx/pdf/hwpx) + 생성·읽기·변환 분기 + edu/doc 게이트 분기 (형식별 reference는 여기서 링크) |
 | `reference/assets.md` | Build: image + media fallback chain, no-fabrication rule |
 | `reference/repurpose.md` | REPURPOSE: transcript ingest -> beats |
 | `reference/review.md` | REVIEW: gate-only flow |

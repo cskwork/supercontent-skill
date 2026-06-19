@@ -101,12 +101,12 @@
   <div class="wrap hero">
     <div class="eyebrow">supercontent</div>
     <h1>아이들이 즐기는, 교육과정에 맞는 학습 콘텐츠.</h1>
-    <p class="lead">의도를 읽고, 학년 밴드가 무엇에 반응하는지 짚고, 알맞은 매체로 라우팅해, 결정적 교육-적합성 게이트를 통과한 콘텐츠를 만듭니다. 분위기 점검이 아니라 게이트가 판정합니다.</p>
+    <p class="lead">의도를 읽고, 학년 밴드가 무엇에 반응하는지 짚고, 알맞은 매체로 라우팅해, 결정적 교육-적합성 게이트를 통과한 콘텐츠를 만듭니다. 분위기 점검이 아니라 게이트가 판정합니다. 교실 밖 직장인 업무 문서(보고서·제안서·PDF·PPT·한글 HWPX)도 DOCS 모드로 생성·읽기·변환합니다 - Windows/macOS 호환.</p>
     <div class="tags">
       <span class="tag">초중고 K-12</span>
       <span class="tag">2022 개정</span>
       <span class="tag">현재 = 2026</span>
-      <span class="tag">10 modes</span>
+      <span class="tag">11 modes</span>
       <span class="tag">deterministic gate</span>
       <span class="tag">한국어 교정</span>
       <span class="tag">no emoji</span>
@@ -124,7 +124,7 @@
   <div class="three">
     <div>
       <h3>의도 기반 라우팅</h3>
-      <p>요청을 10개 모드 중 하나로 분류하고, 학년 밴드에 맞는 매체와 인지 부하를 고릅니다. 하나의 기본 틀이 아니라 의도가 매체를 정합니다.</p>
+      <p>요청을 11개 모드 중 하나로 분류하고, 학년 밴드에 맞는 매체와 인지 부하를 고릅니다. 하나의 기본 틀이 아니라 의도가 매체를 정합니다.</p>
     </div>
     <div>
       <h3>트렌드 인지, 트렌드 추종 아님</h3>
@@ -153,12 +153,13 @@
       <tr><td>SLIDES</td><td>PPT / 차시별 수업 자료 / 발표</td><td>편집 가능 PPTX</td></tr>
       <tr><td>GAME</td><td>학습 게임 / 카드 매칭 / 드래그</td><td>플레이 가능 HTML 게임</td></tr>
       <tr><td>AUDIO</td><td>듣기 자료 / 내레이션 / 동화 구연</td><td>오디오 + 스크립트</td></tr>
+      <tr><td>DOCS</td><td>보고서 / 제안서 / 학습지 / 문서 읽기·변환 (업무 + 교육)</td><td>docx · pptx · pdf · hwpx</td></tr>
       <tr><td>REPURPOSE</td><td>이 영상을 수업자료로 / 자막 활용</td><td>재저작 중간물 -> 빌드 모드</td></tr>
       <tr><td>REVIEW</td><td>이거 학년에 맞아? / 검토</td><td>게이트 판정 + 심각도 리포트</td></tr>
       <tr><td>EXPLORE</td><td>방향 잡고 만들어줘</td><td>2-4 방향 + 추천 (빌드 없음)</td></tr>
     </tbody>
   </table>
-  <p class="modes-note">DIALS는 <code>claims.md</code>에 선언: <code>FUN_INTENSITY</code> / <code>COGNITIVE_LOAD</code> / <code>SCAFFOLDING</code> (각 low|med|high). 밴드 기본값 - 초저: FUN high / LOAD low / SCAFFOLD high. 고: FUN med / LOAD med-high / SCAFFOLD low-med.</p>
+  <p class="modes-note">DIALS는 <code>claims.md</code>에 선언: <code>FUN_INTENSITY</code> / <code>COGNITIVE_LOAD</code> / <code>SCAFFOLDING</code> (각 low|med|high). 밴드 기본값 - 초저: FUN high / LOAD low / SCAFFOLD high. 고: FUN med / LOAD med-high / SCAFFOLD low-med. 단 DOCS(직장인 업무 문서)는 dials와 교육 게이트 대신 <code>doc-gate.sh</code>(맞춤법 + 사실 무결성 + 이모지/PII)를 씁니다 - <code>curriculum-claims.json</code> 없이.</p>
 </section>
 
 <section id="gate">
@@ -222,6 +223,8 @@
 /supercontent "초5 과학 빛의 굴절 인터랙티브"
 /supercontent "초3 곱셈 학습 게임 만들어줘"
 /supercontent "이 영상 자막으로 수업자료"   <span class="cm"># REPURPOSE</span>
+/supercontent "분기 실적 보고서 docx로"       <span class="cm"># DOCS (업무)</span>
+/supercontent "이 hwpx 학습지 표 추출해줘"    <span class="cm"># DOCS (읽기)</span>
 /supercontent "이거 초2 학년에 맞아?"        <span class="cm"># REVIEW</span></pre>
 </section>
 
@@ -229,7 +232,7 @@
 
 <footer class="wrap">
   <p>품질 우선, 폴백 포함. 학생 데이터가 관여하면 로컬/자체 호스팅(Supertonic TTS, presenton+Ollama)을 선호하고, 외부 전송은 동의 하드스톱입니다.</p>
-  <p>참조 레포 (역량 + 출처): youtube-autopilot, OpenMontage, supertonic-tts, Math-To-Manim, youtube-transcript-api, presenton, ppt-master. 자매 스킬 패턴: <a href="https://cskwork.github.io/superdesign-skill">superdesign</a>.</p>
+  <p>참조 레포 (역량 + 출처): youtube-autopilot, OpenMontage, supertonic-tts, Math-To-Manim, youtube-transcript-api, presenton, ppt-master. DOCS 모드: python-docx, python-pptx, pdfplumber, pypdf, python-hwpx, WeasyPrint, LibreOffice+H2Orestart. 자매 스킬 패턴: <a href="https://cskwork.github.io/superdesign-skill">superdesign</a>.</p>
   <p>현재 연도 2026. 교육과정 = 2022 개정. 이모지 없음 - 대괄호 마커 <span class="kbd">[목적]</span> <span class="kbd">[활동]</span> <span class="kbd">[정리]</span>.</p>
 </footer>
 
